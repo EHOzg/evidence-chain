@@ -55,11 +55,13 @@ pnpm install
 ### 开发启动
 
 启动 Web 端开发环境：
+
 ```bash
 pnpm dev:web
 ```
 
 启动桌面端开发环境：
+
 ```bash
 pnpm dev:desktop
 ```
@@ -67,6 +69,7 @@ pnpm dev:desktop
 ### 项目构建
 
 构建所有子项目：
+
 ```bash
 pnpm build
 ```
@@ -74,6 +77,7 @@ pnpm build
 ## 💎 开发规范
 
 本项目严格遵循 [Vue 最佳实践](.agents/skills/vue-best-practices/SKILL.md)：
+
 1.  **Reactivity**: 优先使用 `shallowRef` 处理原始数据类型以提升性能。
 2.  **SFC**: 统一使用 `Vue 3.5+` 的 `useTemplateRef` 进行 DOM 访问。
 3.  **UI**: 组件开发遵循统一的 UI 规范，存放于 `packages/ui`。
@@ -81,3 +85,26 @@ pnpm build
 ## 📜 许可证
 
 [待定]
+
+## 🤝 贡献指南
+
+欢迎提交 Pull Request！在开始之前，请阅读以下流程：
+
+1. **分支规范**：`feature/xxx`、`fix/xxx`、`docs/xxx`。
+2. **代码风格**：遵循项目的 ESLint + Prettier 配置，使用 `pnpm lint` 检查。
+3. **提交信息**：遵循 Conventional Commits。
+4. **本地调试**：运行 `pnpm dev:web` 或 `pnpm dev:desktop`。
+5. **单元测试**：使用 Vitest，执行 `pnpm test`。
+
+## 🐞 常见问题
+
+- **如何在桌面端调试 Tauri？**  
+  参考官方文档 `pnpm dev:desktop`，并在 VS Code 中使用 `Tauri: Debug`。
+
+- **依赖冲突**：  
+  运行 `pnpm install --frozen-lockfile` 确保锁文件一致。
+
+## 🚀 部署
+
+- **Web 端**：`pnpm build` 生成 `dist`，部署至任意静态服务器（如 Nginx）。
+- **桌面端**：`pnpm build` 后执行 `pnpm tauri build`，生成对应平台的安装包。
