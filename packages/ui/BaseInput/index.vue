@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed, useTemplateRef } from 'vue'
 
 defineOptions({ name: 'BaseInput' })
 
@@ -76,7 +76,7 @@ const props = withDefaults(
 
 const emit = defineEmits(['update:modelValue', 'focus', 'blur', 'change', 'clear'])
 
-const inputRef = ref<HTMLInputElement | null>(null)
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
 
 const hasValue = computed(() => {
   const v = props.modelValue

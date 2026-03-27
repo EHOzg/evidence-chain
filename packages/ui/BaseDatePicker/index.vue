@@ -114,7 +114,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, shallowRef, computed, watch } from 'vue'
 // import type { PropType } from 'vue'
 import type { BaseDatePickerProps, ShortcutType } from './types'
 import { usePicker } from './index'
@@ -140,7 +140,7 @@ const emit = defineEmits([
   'ok',
 ])
 
-const visible = ref(false)
+const visible = shallowRef(false)
 const hoverDate = ref<Date | null>(null)
 const tempRange = ref<Date[]>([])
 const { leftViewDate, rightViewDate, getDays, moveView } = usePicker(props)

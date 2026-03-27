@@ -9,19 +9,31 @@
         <div class="section-content">
           <!-- 第一行：申请人三个字段（只读禁用） -->
           <div class="form-row grid-3">
-            <BaseFormItem label="申请人单位">
+            <BaseFormItem
+              label="申请人单位"
+              field="applyUnitName"
+              hide-asterisk
+              :rules="[{ required: true, message: '必填', trigger: 'submit' }]">
               <BaseInput
                 v-model="extInfo.applyUnitName"
                 disabled
                 placeholder="—" />
             </BaseFormItem>
-            <BaseFormItem label="申请人姓名">
+            <BaseFormItem
+              label="申请人姓名"
+              field="applyUserName"
+              hide-asterisk
+              :rules="[{ required: true, message: '必填', trigger: 'submit' }]">
               <BaseInput
                 v-model="extInfo.applyUserName"
                 disabled
                 placeholder="—" />
             </BaseFormItem>
-            <BaseFormItem label="申请人电话">
+            <BaseFormItem
+              label="申请人电话"
+              field="applyPhone"
+              hide-asterisk
+              :rules="[{ required: true, message: '必填', trigger: 'submit' }]">
               <BaseInput
                 v-model="extInfo.applyPhone"
                 disabled
@@ -31,7 +43,9 @@
 
           <!-- 第二行：资质名称（只读）+ 日期范围（可编辑） -->
           <div class="form-row grid-2-date">
-            <BaseFormItem label="资质名称">
+            <BaseFormItem
+              label="资质名称"
+              hide-asterisk>
               <BaseInput
                 :model-value="serviceInfo?.name || ''"
                 disabled
@@ -41,18 +55,18 @@
             <BaseFormItem
               label="日期范围"
               field="dateRange"
-              :rules="[{ required: true, message: '请选择日期范围' }]">
+              hide-asterisk
+              :rules="[{ required: true, message: '请选择日期范围', trigger: 'submit' }]">
               <div class="date-range-box">
                 <BaseDatePicker
                   v-model="dateRange"
-                  type="daterange"
+                  mode="range"
                   style="width: 280px"
                   @change="handleDateChange" />
                 <div class="quick-btns">
                   <BaseButton
                     v-for="item in quickDateOptions"
                     :key="item.value"
-                    variant="secondary"
                     size="small"
                     @click="setQuickDate(item.value)">
                     {{ item.label }}
@@ -73,25 +87,32 @@
           <div class="form-row grid-3">
             <BaseFormItem
               field="caseName"
+              hide-asterisk
               label="案件名称"
-              :rules="[{ required: true, message: '请输入案件名称' }]">
+              :rules="[{ required: true, message: '请输入案件名称', trigger: 'submit' }]">
               <BaseInput v-model="extInfo.caseName" placeholder="请输入" />
             </BaseFormItem>
             <BaseFormItem
               field="caseNo"
+              hide-asterisk
               label="案件编号"
-              :rules="[{ required: true, message: '请输入案件编号' }]">
+              :rules="[{ required: true, message: '请输入案件编号', trigger: 'submit' }]">
               <BaseInput v-model="extInfo.caseNo" placeholder="请输入" />
             </BaseFormItem>
             <BaseFormItem
               field="caseReason"
+              hide-asterisk
               label="案件事由"
-              :rules="[{ required: true, message: '请输入案件事由' }]">
+              :rules="[{ required: true, message: '请输入案件事由', trigger: 'submit' }]">
               <BaseInput v-model="extInfo.caseReason" placeholder="请输入" />
             </BaseFormItem>
           </div>
           <div class="form-row">
-            <BaseFormItem field="specialRequire" label="概要说明">
+            <BaseFormItem
+              field="specialRequire"
+              hide-asterisk
+              label="概要说明"
+              :rules="[{ required: true, message: '请输入概要说明', trigger: 'submit' }]">
               <BaseInput
                 v-model="extInfo.specialRequire"
                 type="textarea"
@@ -112,38 +133,51 @@
             <div class="doc-label required">调证通知书</div>
             <div class="doc-content">
               <div class="notice-prefix-group">
-                <BaseInput
-                  v-model="extInfo.noticePre"
-                  placeholder="文书前缀标识"
-                  style="width: 160px" />
+                <BaseFormItem field="noticePre" hide-label hide-asterisk :rules="[{ required: true, message: '必填', trigger: 'submit' }]" style="margin-bottom: 0">
+                  <BaseInput
+                    v-model="extInfo.noticePre"
+                    placeholder="文书前缀标识"
+                    style="width: 160px" />
+                </BaseFormItem>
                 <span class="symbol">(</span>
-                <BaseInput
-                  v-model="extInfo.noticeMain"
-                  placeholder="通知书主体"
-                  style="width: 140px" />
+                <BaseFormItem field="noticeMain" hide-label hide-asterisk :rules="[{ required: true, message: '必填', trigger: 'submit' }]" style="margin-bottom: 0">
+                  <BaseInput
+                    v-model="extInfo.noticeMain"
+                    placeholder="通知书主体"
+                    style="width: 140px" />
+                </BaseFormItem>
                 <span class="symbol">)</span>
-                <BaseInput
-                  v-model="extInfo.noticeNo"
-                  placeholder="通知书编号"
-                  style="flex: 1" />
+                <BaseFormItem field="noticeNo" hide-label hide-asterisk :rules="[{ required: true, message: '必填', trigger: 'submit' }]" style="flex: 1; margin-bottom: 0">
+                  <BaseInput
+                    v-model="extInfo.noticeNo"
+                    placeholder="通知书编号"
+                    style="width: 100%" />
+                </BaseFormItem>
                 <span class="unit">号</span>
               </div>
               <div class="upload-tip">
                 上限5张，大小不超过10M，支持.jpg .png .bmp .pdf
               </div>
-              <div class="upload-actions">
-                <BaseButton variant="primary" size="small">
-                  系统生成
-                </BaseButton>
-                <BaseUpload
-                  v-model:fileList="extInfo.verifyNotice"
-                  :limit="5"
-                  accept=".jpg,.png,.bmp,.pdf">
-                  <BaseButton variant="primary" size="small" icon="upload">
-                    上传文件
+              <BaseFormItem
+                field="verifyNotice"
+                hide-label
+                hide-asterisk
+                :rules="[{ required: true, validator: (v: any, cb: any) => { if (!v || !v.length) cb('请上传文件') }, trigger: 'submit' }]"
+                style="margin-bottom: 0">
+                <div class="upload-actions">
+                  <BaseButton variant="primary" size="small">
+                    系统生成
                   </BaseButton>
-                </BaseUpload>
-              </div>
+                  <BaseUpload
+                    v-model:fileList="extInfo.verifyNotice"
+                    :limit="5"
+                    accept=".jpg,.png,.bmp,.pdf">
+                    <BaseButton variant="primary" size="small" icon="upload">
+                      上传文件
+                    </BaseButton>
+                  </BaseUpload>
+                </div>
+              </BaseFormItem>
             </div>
           </div>
 
@@ -153,19 +187,26 @@
               <div class="upload-tip">
                 上限10张，大小不超过10M，支持.jpg .png .bmp .pdf
               </div>
-              <div class="upload-actions">
-                <BaseButton variant="primary" size="small">
-                  系统生成
-                </BaseButton>
-                <BaseUpload
-                  v-model:fileList="extInfo.verifyList"
-                  :limit="10"
-                  accept=".jpg,.png,.bmp,.pdf">
-                  <BaseButton variant="primary" size="small" icon="upload">
-                    上传文件
+              <BaseFormItem
+                field="verifyList"
+                hide-label
+                hide-asterisk
+                :rules="[{ required: true, validator: (v: any, cb: any) => { if (!v || !v.length) cb('请上传文件') }, trigger: 'submit' }]"
+                style="margin-bottom: 0">
+                <div class="upload-actions">
+                  <BaseButton variant="primary" size="small">
+                    系统生成
                   </BaseButton>
-                </BaseUpload>
-              </div>
+                  <BaseUpload
+                    v-model:fileList="extInfo.verifyList"
+                    :limit="10"
+                    accept=".jpg,.png,.bmp,.pdf">
+                    <BaseButton variant="primary" size="small" icon="upload">
+                      上传文件
+                    </BaseButton>
+                  </BaseUpload>
+                </div>
+              </BaseFormItem>
             </div>
           </div>
         </div>
@@ -185,41 +226,53 @@
             <div class="police-fields">
               <div class="form-row grid-3">
                 <BaseFormItem
-                  :field="`policeInfo[${index}].policeName`"
+                  :field="`policeInfo.${index}.policeName`"
                   label="民警姓名"
-                  :rules="[{ required: true, message: '请输入姓名' }]">
+                  hide-asterisk
+                  :rules="[{ required: true, message: '请输入姓名', trigger: 'submit' }]">
                   <BaseInput v-model="police.policeName" placeholder="请输入" />
                 </BaseFormItem>
                 <BaseFormItem
-                  :field="`policeInfo[${index}].policeNum`"
+                  :field="`policeInfo.${index}.policeNum`"
                   label="民警警号"
-                  :rules="[{ required: true, message: '请输入警号' }]">
+                  hide-asterisk
+                  :rules="[{ required: true, message: '请输入警号', trigger: 'submit' }]">
                   <BaseInput v-model="police.policeNum" placeholder="请输入" />
                 </BaseFormItem>
                 <BaseFormItem
-                  :field="`policeInfo[${index}].policePhone`"
+                  :field="`policeInfo.${index}.policePhone`"
                   label="民警电话"
-                  :rules="[{ required: true, message: '请输入电话' }]">
-                  <BaseInput v-model="police.policePhone" placeholder="请输入" />
+                  hide-asterisk
+                  :rules="[{ required: true, message: '请输入电话', trigger: 'submit' }]">
+                  <BaseInput
+                    v-model="police.policePhone"
+                    placeholder="请输入" />
                 </BaseFormItem>
               </div>
               <div class="upload-area">
                 <div class="upload-tip">
                   警官照片附件：文件格式要求PDF或者OFD，需上传正反面
                 </div>
-                <div class="upload-actions">
-                  <BaseButton variant="primary" size="small">
-                    系统生成
-                  </BaseButton>
-                  <BaseUpload
-                    v-model:fileList="police.cardFiles"
-                    :limit="2"
-                    accept=".jpg,.png,.jpeg,.pdf,.ofd">
-                    <BaseButton variant="primary" size="small" icon="upload">
-                      上传文件
+                <BaseFormItem
+                  :field="`policeInfo.${index}.cardFiles`"
+                  hide-label
+                  hide-asterisk
+                  :rules="[{ required: true, validator: (v: any, cb: any) => { if (!v || !v.length) cb('请上传文件') }, trigger: 'submit' }]"
+                  style="margin-bottom: 0">
+                  <div class="upload-actions">
+                    <BaseButton variant="primary" size="small">
+                      系统生成
                     </BaseButton>
-                  </BaseUpload>
-                </div>
+                    <BaseUpload
+                      v-model:fileList="police.cardFiles"
+                      :limit="2"
+                      accept=".jpg,.png,.jpeg,.pdf,.ofd">
+                      <BaseButton variant="primary" size="small" icon="upload">
+                        上传文件
+                      </BaseButton>
+                    </BaseUpload>
+                  </div>
+                </BaseFormItem>
               </div>
             </div>
           </div>
@@ -395,7 +448,6 @@ defineExpose({ validate })
   cursor: default;
   opacity: 1;
 }
-
 
 /* 手续文书样式 */
 .document-item {

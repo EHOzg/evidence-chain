@@ -30,7 +30,7 @@
         </div>
 
         <div v-show="currentStep === 2" class="step-panel">
-          <StepThree :form-data="masterFormData.stepThree" :field-config="masterFormData.stepThree.fieldConfig" />
+          <StepThree ref="stepThreeRef" :form-data="masterFormData.stepThree" :field-config="masterFormData.stepThree.fieldConfig" />
         </div>
       </div>
     </div>
@@ -94,6 +94,7 @@ const props = defineProps({
 
 const stepOneRef = ref<any>(null)
 const stepTwoRef = ref<any>(null)
+const stepThreeRef = ref<any>(null)
 const visible = defineModel<boolean>('visible')
 const currentStep = ref(0)
 const submitLoading = ref(false)
@@ -239,6 +240,12 @@ const handleNext = async () => {
 
     // ── Step 2：填写表单 → 提交申请 ────────────────────────────
     if (currentStep.value === 2) {
+      const isStepThreeValid = await stepThreeRef.value?.validate()
+      if (!isStepThreeValid) {
+        BaseMessage.error('表单校验未通过，请检查必填项')
+        return
+      }
+
       // TODO: 调用最终提交接口
       BaseMessage.success('申请提交成功')
       handleClose()

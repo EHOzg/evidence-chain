@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { inject, onMounted, onUnmounted, ref, computed, toRaw } from 'vue'
+import { inject, onMounted, onUnmounted, ref, shallowRef, computed, toRaw } from 'vue'
 
 defineOptions({ name: 'BaseFormItem' })
 
@@ -94,10 +94,10 @@ const props = withDefaults(
 
 const formCtx = inject('BaseFormContext', null) as any
 
-const innerValidateStatus = ref<
+const innerValidateStatus = shallowRef<
   'success' | 'warning' | 'error' | 'validating' | ''
 >('')
-const errorMessage = ref('')
+const errorMessage = shallowRef('')
 const initialValue = ref<any>(undefined)
 
 const mergedValidateStatus = computed(() => {

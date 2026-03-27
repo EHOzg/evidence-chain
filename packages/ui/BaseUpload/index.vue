@@ -127,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, shallowRef, useTemplateRef, watch } from 'vue'
 
 defineOptions({ name: 'BaseUpload' })
 
@@ -179,8 +179,8 @@ const emit = defineEmits<{
   (e: 'exceed', files: File[], fileList: FileItem[]): void
 }>()
 
-const inputRef = ref<HTMLInputElement | null>(null)
-const isDragOver = ref(false)
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
+const isDragOver = shallowRef(false)
 const innerFileList = ref<FileItem[]>([...(props.defaultFileList || [])])
 
 // 受控模式与非受控模式结合

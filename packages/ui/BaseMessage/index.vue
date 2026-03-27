@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { shallowRef, onMounted } from 'vue'
 
 defineOptions({
   name: 'BaseMessage',
@@ -79,7 +79,7 @@ const props = defineProps<{
 
 defineEmits(['destroy'])
 
-const visible = ref(false)
+const visible = shallowRef(false)
 
 onMounted(() => {
   visible.value = true

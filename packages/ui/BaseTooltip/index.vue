@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, onBeforeUnmount } from 'vue'
+import { ref, shallowRef, useTemplateRef, nextTick, onBeforeUnmount } from 'vue'
 
 defineOptions({ name: 'BaseTooltip' })
 
@@ -48,9 +48,9 @@ const props = withDefaults(
   }
 )
 
-const visible = ref(false)
-const triggerRef = ref<HTMLElement | null>(null)
-const popperRef = ref<HTMLElement | null>(null)
+const visible = shallowRef(false)
+const triggerRef = useTemplateRef<HTMLElement>('triggerRef')
+const popperRef = useTemplateRef<HTMLElement>('popperRef')
 let timer: ReturnType<typeof setTimeout> | null = null
 
 const popperStyle = ref<Record<string, string>>({ top: '0px', left: '0px' })

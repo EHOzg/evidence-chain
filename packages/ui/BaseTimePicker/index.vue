@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, watch } from 'vue'
+import { shallowRef, useTemplateRef, nextTick, watch } from 'vue'
 
 defineOptions({ name: 'BaseTimePicker' })
 
@@ -85,10 +85,10 @@ const props = withDefaults(
 
 const emit = defineEmits(['update:modelValue', 'change', 'clear'])
 
-const visible = ref(false)
-const hourRef = ref<HTMLElement | null>(null)
-const minuteRef = ref<HTMLElement | null>(null)
-const secondRef = ref<HTMLElement | null>(null)
+const visible = shallowRef(false)
+const hourRef = useTemplateRef<HTMLElement>('hourRef')
+const minuteRef = useTemplateRef<HTMLElement>('minuteRef')
+const secondRef = useTemplateRef<HTMLElement>('secondRef')
 
 const getPart = (index: number) => {
   const parts = (props.modelValue || '00:00:00').split(':')

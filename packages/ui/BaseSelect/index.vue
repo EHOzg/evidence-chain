@@ -119,7 +119,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, nextTick, onUnmounted, useAttrs } from 'vue'
+import { ref, shallowRef, useTemplateRef, computed, watch, nextTick, onUnmounted, useAttrs } from 'vue'
 import type { BaseSelectProps, SelectOptionData } from './types'
 
 const attrs = useAttrs()
@@ -150,10 +150,10 @@ const emit = defineEmits([
   'search',
 ])
 
-const popupVisibleInternal = ref(false)
-const containerRef = ref<HTMLElement | null>(null)
-const inputValueInternal = ref('')
-const inputRef = ref<HTMLInputElement | null>(null)
+const popupVisibleInternal = shallowRef(false)
+const containerRef = useTemplateRef<HTMLElement>('containerRef')
+const inputValueInternal = shallowRef('')
+const inputRef = useTemplateRef<HTMLInputElement>('inputRef')
 
 const fieldNames = computed(() => {
   const f = props.fieldNames || (attrs['field-names'] as any) || {}

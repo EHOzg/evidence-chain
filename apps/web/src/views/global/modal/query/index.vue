@@ -44,7 +44,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { BaseMessage } from '@project/ui'
-import { addDzEcho } from '@project/api/verify'
 
 interface ServiceData {
   channelType: string
