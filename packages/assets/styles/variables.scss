@@ -1,0 +1,101 @@
+/* assets/styles/variables.scss */
+
+// ==========================================
+// 1. 品牌色体系 (Brand / Primary)
+// 包含基础色阶与标准交互语义
+// ==========================================
+$p-1: var(--p-1); // 极浅/背景
+$p-2: var(--p-2);
+$p-3: var(--p-3);
+$p-4: var(--p-4); // 禁用态
+$p-5: var(--p-5); // Hover
+$p-6: var(--p-6); // Normal (主色)
+$p-7: var(--p-7); // Active
+$p-8: var(--p-8);
+$p-9: var(--p-9);
+
+// 标准语义映射 (核心系统变量)
+$p: $p-6; // 主色
+$p-hover: $p-5; // 悬浮
+$p-active: $p-7; // 点击
+$p-light: $p-1; // 选中底色
+$p-dis: $p-4; // 禁用
+$p-text: var(--p-text); // 品牌背景文字色
+$p-grad: var(--p-grad); // 渐变
+$p-shadow: var(--p-shadow); // 投影
+
+// ==========================================
+// 2. 状态色体系 (Functional / Status)
+// 包含成功、警告、危险及其交互态
+// ==========================================
+$success: var(--success);
+$success-h: var(--success-hover);
+
+$warning: var(--warning);
+$warning-h: var(--warning-hover);
+
+$danger: var(--danger);
+$danger-h: var(--danger-hover);
+
+$info: var(--info);
+$info-h: var(--info-hover);
+
+$link: var(--link);
+$link-h: $p-5;
+
+// ==========================================
+// 3. 背景与填充体系 (Background & Fill)
+// 定义容器层级与中性色交互
+// ==========================================
+$bg-1: var(--bg-1); // 页面底层 (Body)
+$bg-2: var(--bg-2); // 容器层 (Header/Sider)
+$bg-3: var(--bg-3); // 浮层层 (Card/Modal)
+$bg-4: var(--bg-4); // 禁用/输入框背景
+
+// 中性交互语义
+$bg-h: var(--bg-h); // 浅色悬浮 (菜单/列表)
+$bg-s: var(--bg-s); // 浅色选中
+$bg-m: var(--bg-m); // 全局遮罩
+
+$f-1: var(--f-1); // 静态填充 (Tag)
+$f-2: var(--f-2); // 交互填充 (Hover)
+
+// ==========================================
+// 4. 文字体系 (Typography)
+// ==========================================
+$t-1: var(--t-1); // 标题/正文
+$t-2: var(--t-2); // 次要/正文
+$t-3: var(--t-3); // 辅助/提示
+$t-dis: var(--t-dis); // 禁用/占位符
+$t-w: #ffffff; // 强制白
+$t-b: #000000; // 强制黑
+
+// ==========================================
+// 5. 边框体系 (Border)
+// ==========================================
+$b-1: var(--b-1); // 弱分割线
+$b-2: var(--b-2); // 强边框 (Input)
+
+// ==========================================
+// 6. 物理属性 (Layout / Radius / Shadow)
+// ==========================================
+$h-header: 60px;
+$h-winbar: 30px;
+$w-sider: 220px;
+
+$radius-s: 2px;
+$radius-m: 4px;
+$radius-l: 8px;
+$radius-full: 9999px;
+
+$s-1: var(--s-1);
+$s-2: var(--s-2);
+$s-3: var(--s-3);
+
+$z-mask: 1000;
+$z-modal: 1001;
+$z-popover: 1010;
+$z-winbar: 9999;
+
+// --- 7. 资源 ---
+$tips-bg: '@project/assets/images/tips-bg.png';

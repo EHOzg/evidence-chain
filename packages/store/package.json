@@ -1,0 +1,15 @@
+{
+  "name": "@project/store",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "dependencies": {
+    "pinia": "^2.x.x",
+    "pinia-plugin-persistedstate": "^4.7.1",
+    "@tauri-apps/api": "^2.10.1",
+    "js-md5": "^0.8.3",
+    "tinycolor2": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/tinycolor2": "^1.4.6"
+  }
+}

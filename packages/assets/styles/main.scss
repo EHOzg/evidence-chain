@@ -1,0 +1,42 @@
+@use './variables.scss';
+
+:root {
+  --primary-6: #165dff;
+  --bg-body: #f7f8fa;
+  --bg-header: #f5f5f5;
+  --bg-sider: #f5f5f5;
+  --bg-card: #ffffff;
+  --bg-container: #ececec;
+  --bg-hover: #f2f3f5;
+
+  --text-main: #1d2129;
+  --text-secondary: #4e5969;
+  --text-tips: #86909c;
+  --text-disabled: #c9cdd4;
+
+  --border-color: #e5e6eb;
+}
+
+.dark-mode {
+  --bg-body: #17171a;
+  --bg-header: #232324;
+  --bg-sider: #232324;
+  --bg-card: #2a2a2b;
+  --bg-container: #121212;
+  --bg-hover: rgba(255, 255, 255, 0.08);
+
+  --text-main: #f5f5f5;
+  --text-secondary: #c9cdd4;
+  --text-tips: #86909c;
+  --text-disabled: #4e5969;
+
+  --border-color: #303030;
+}
+
+body {
+  background: $bg-1;
+  color: $t-1;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}

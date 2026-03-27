@@ -1,0 +1,10 @@
+{
+  "name": "@project/api",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "dependencies": {
+    "@tauri-apps/plugin-http": "~2",
+    "axios": "^1.13.6",
+    "vue": "^3.5.31"
+  }
+}
